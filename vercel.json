@@ -1,0 +1,22 @@
+{
+  "headers": [
+    {
+      "source": "/video/(.*).m3u8",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    },
+    {
+      "source": "/video/(.*).ts",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    }
+  ]
+}
