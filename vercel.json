@@ -6,6 +6,10 @@
         {
           "key": "Access-Control-Allow-Origin",
           "value": "*"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/vnd.apple.mpegurl"
         }
       ]
     },
@@ -15,6 +19,10 @@
         {
           "key": "Access-Control-Allow-Origin",
           "value": "*"
+        },
+        {
+          "key": "Content-Type",
+          "value": "video/mp2t"
         }
       ]
     }
