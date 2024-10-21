@@ -146,7 +146,7 @@
         </video>
     </div>
 
-    <div class="live-section" onclick="loadVideo('http://bd.ottbd.online:2082/live/Durjoy859/01327184859/2181.m3u8')">
+    <div class="live-section" onclick="loadVideo('https://your-live-stream-url.m3u8')">
         <div class="team-box">
             <div class="team">
                 <img src="https://example.com/team1-logo.png" alt="Team 1 Logo" class="team-logo">
@@ -189,11 +189,6 @@
         });
 
         function loadVideo(sourceUrl) {
-            // If the URL is HTTP, convert it to HTTPS
-            if (sourceUrl.startsWith('http://')) {
-                sourceUrl = sourceUrl.replace('http://', 'https://');
-            }
-
             if (Hls.isSupported()) {
                 if (window.hls) {
                     window.hls.destroy();
@@ -237,6 +232,7 @@
                             channelButton.href = "#";
                             channelButton.classList.add('channel-link');
                             channelButton.setAttribute('data-link', channel.url);
+                            channelButton.setAttribute('target', '_blank'); // New tab will open
 
                             const logoImg = document.createElement('img');
                             logoImg.src = channel.logo;
@@ -254,11 +250,7 @@
                             link.addEventListener('click', function (e) {
                                 e.preventDefault();
                                 let videoUrl = this.getAttribute('data-link');
-                                // If the URL is HTTP, convert it to HTTPS
-                                if (videoUrl.startsWith('http://')) {
-                                    videoUrl = videoUrl.replace('http://', 'https://');
-                                }
-                                loadVideo(videoUrl);
+                                window.open(videoUrl, '_blank'); // Open link in a new tab
                             });
                         });
                     });
