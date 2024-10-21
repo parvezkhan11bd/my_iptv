@@ -6,167 +6,103 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>KamarKhali Broadband LIVE TV</title>
     <meta content="ENJOY FREE LIVE IPTV" name="description">
-    <meta content="Watch live sports streaming online, including football, basketball, baseball, hockey, and more. Stream your favorite sports teams and events in HD, with no cable subscription required." name="keywords">
+    <meta content="Watch live sports streaming online, including football, basketball, baseball, hockey, and more." name="keywords">
     <meta content="PK" name="author">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <link href="https://i.ibb.co.com/PQgtMq7/img-1-1728903047238.webp" rel="shortcut icon" type="image/x-icon">
-
     <link href="https://cdn.jsdelivr.net/npm/plyr@3.6.2/dist/plyr.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/plyr@3.6.12/dist/plyr.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/hls.js@1.1.4/dist/hls.min.js"></script>
-
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #181818;
-            color: #fff;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        header {
-            margin: 30px;
-            text-align: center;
-        }
-
-        .video-player {
-            padding: 20px;
-            border-radius: 15px;
-            margin: 20px 0;
-            background-color: #1a1a1a;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-            width: 100%;
-            max-width: 640px;
-            text-align: center;
-        }
-
-        .video-player video {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-            border: 2px solid #ffffff;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        .loading {
-            font-size: 18px;
-            color: white;
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 10px;
-            border-radius: 10px;
-            display: none;
-            text-align: center;
-        }
-
-        .channel-buttons {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-
-        .channel-buttons a {
-            background-color: #333;
-            width: 100px;
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 10px;
-            margin: 10px;
-            transition: background-color 0.3s ease;
-            text-decoration: none;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .channel-buttons a img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-        }
-
-        .channel-buttons a:hover {
-            background-color: #4CAF50;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
-        }
-
-        .team-logos {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .team-logos a {
-            margin: 0 10px;
-            display: block;
-        }
-
-        .team-logos img {
-            width: 100px; /* Adjust size as needed */
-            height: auto;
-            border-radius: 5px;
-        }
-
-        @media (max-width: 568px) {
-            .video-player {
-                width: 100%;
-                padding: 10px;
-            }
-
-            .channel-buttons a {
-                width: 80px;
-                height: 80px;
-            }
-
-            .channel-buttons a img {
-                width: 60px;
-                height: 60px;
-            }
-
-            .team-logos img {
-                width: 80px; /* Adjust size for smaller screens */
-            }
-        }
-    </style>
-
 </head>
 
 <body>
-
 <header>
-    <img src="https://i.ibb.co.com/WthG9Mn/IMG-20241015-WA0000.jpg" alt="Website Logo" style="width: 450px; height: auto;">
+    <img src="https://i.ibb.co.com/WthG9Mn/IMG-20241015-WA0000.jpg" alt="Website Logo" style="width: 450px; height: auto; display: block; margin: 30px ;">
 </header>
 
-<!-- Team Logos Section -->
-<div class="team-logos">
-    <a href="#" id="team1Link">
-        <img src="https://example.com/team1-logo.png" alt="Team 1 Logo">
-    </a>
-    <a href="#" id="team2Link">
-        <img src="https://example.com/team2-logo.png" alt="Team 2 Logo">
-    </a>
-</div>
-
+<!-- Video Player Section -->
 <div class="video-player">
-    <div class="loading" id="videoLoading">Loading video...</div>
-    <video autoplay="" controls="" crossorigin="" id="videoPlayer" playsinline="">
+    <div class="loading" id="videoLoading"></div>
+    <video autoplay controls crossorigin id="videoPlayer" playsinline unmuted>
         <source id="videoSource" src="" type="application/vnd.apple.mpegurl">
     </video>
+
+    <div class="col-md-12">
+        <style>
+            .notice-movies {
+                margin-top: 3px;
+                background: #000000;
+                color: white;
+                position: relative;
+                padding: 10px;
+                overflow: hidden;
+                font-family: var(--font-secondary);
+                border-radius: 7px;
+            }
+
+            .notice-movies::before {
+                content: '';
+                position: absolute;
+                border-left: 17px solid var(--black);
+                border-bottom: 17px solid var(--black);
+                border-top: 17px solid transparent;
+                border-right: 17px solid transparent;
+                left: 98px;
+                top: 0;
+                z-index: 1;
+            }
+
+            .notice-movies::after {
+                content: 'Notice:';
+                position: absolute;
+                height: 100%;
+                padding: 0 6px;
+                line-height: 43px;
+                background: Green;
+                color: white;
+                font-family: var(--font-primary);
+                font-weight: 600;
+                left: 0;
+                top: 0;
+            }
+        </style>
+        <center>
+            <marquee class="notice-movies" scrollamount="4">
+                ***কামারখালী ব্রডব্যান্ড লাইভ টিভিতে আপনাদের সবাইকে স্বাগতম। লাইভ টিভি দেখুন সম্পূর্ন ফ্রিতে। চ্যানেল প্লে হতে ৫ থেকে ১০ সেকেন্ড টাইম নিতে পারে, তবে সেটা সার্ভার ও আপনার ইন্টারনেটের উপর নির্ভর করবে।
+            </marquee>
+        </center>
+    </div>
 </div>
 
-<div class="channel-buttons" id="channelList">
-    <!-- Channels will load dynamically -->
+<!-- Live Section -->
+<div class="live-section">
+    <div class="team-box">
+        <div class="team" id="team1">
+            <img src="https://example.com/team1-logo.png" alt="Team 1 Logo" class="team-logo">
+            <a href="#" id="team1Link">Team 1</a>
+        </div>
+        <div class="vs">Vs</div>
+        <div class="team" id="team2">
+            <img src="https://example.com/team2-logo.png" alt="Team 2 Logo" class="team-logo">
+            <a href="#" id="team2Link">Team 2</a>
+        </div>
+    </div>
+</div>
+
+<div class="loading" id="channelLoading">
+    <p>Loading channels...</p>
+</div>
+<div class="channel-buttons" id="channelList" style="display: none;">
+    <!-- Channels will be dynamically loaded here -->
 </div>
 
 <script>
     const video = document.getElementById('videoPlayer');
     const videoLoading = document.getElementById('videoLoading');
+    const channelLoading = document.getElementById('channelLoading');
     const channelList = document.getElementById('channelList');
 
+    // Display video loading animation
     video.addEventListener('waiting', function () {
         videoLoading.style.display = 'block';
     });
@@ -175,6 +111,7 @@
         videoLoading.style.display = 'none';
     });
 
+    // Load demo video when the page loads
     document.addEventListener('DOMContentLoaded', function () {
         const demoVideoUrl = 'https://dzkyvlfyge.erbvr.com/PeaceTvBangla/tracks-v3a1/mono.m3u8';
         loadVideo(demoVideoUrl);
@@ -186,7 +123,7 @@
             if (window.hls) {
                 window.hls.destroy();
             }
-            const hls = new Hls();
+            var hls = new Hls();
             hls.loadSource(sourceUrl);
             hls.attachMedia(video);
             window.hls = hls;
@@ -197,69 +134,188 @@
     }
 
     function loadChannels() {
-        fetch('https://raw.githubusercontent.com/parvezkhan11bd/parvez_ip/refs/heads/main/toffe.m3u')
-            .then(response => response.text())
-            .then(data => {
-                const lines = data.split('\n');
-                let channels = [];
-                let currentChannel = {};
+        // Simulate delay for loading channels
+        setTimeout(() => {
+            fetch('https://raw.githubusercontent.com/parvezkhan11bd/parvez_ip/refs/heads/main/toffe.m3u')
+                .then(response => response.text())
+                .then(data => {
+                    const lines = data.split('\n');
+                    let channels = [];
+                    let currentChannel = {};
 
-                lines.forEach(line => {
-                    if (line.startsWith('#EXTINF')) {
-                        const logoMatch = line.match(/tvg-logo="(.*?)"/);
-                        const nameMatch = line.match(/,(.*)/);
-                        if (logoMatch && nameMatch) {
-                            currentChannel.logo = logoMatch[1];
-                            currentChannel.name = nameMatch[1];
+                    lines.forEach(line => {
+                        if (line.startsWith('#EXTINF')) {
+                            const logoMatch = line.match(/tvg-logo="(.*?)"/);
+                            const nameMatch = line.match(/,(.*)/);
+                            if (logoMatch && nameMatch) {
+                                currentChannel.logo = logoMatch[1];
+                                currentChannel.name = nameMatch[1];
+                            }
+                        } else if (line.startsWith('http')) {
+                            currentChannel.url = line.trim();
+                            channels.push(currentChannel);
+                            currentChannel = {};
                         }
-                    } else if (line.startsWith('http')) {
-                        currentChannel.url = line.trim();
-                        channels.push(currentChannel);
-                        currentChannel = {};
-                    }
-                });
+                    });
 
-                channels.forEach(channel => {
-                    const channelButton = document.createElement('a');
-                    channelButton.href = "#";
-                    channelButton.classList.add('channel-link');
-                    channelButton.setAttribute('data-link', channel.url);
+                    channels.forEach(channel => {
+                        const channelButton = document.createElement('a');
+                        channelButton.href = "#";
+                        channelButton.classList.add('channel-link');
+                        channelButton.setAttribute('data-link', channel.url);
 
-                    const logoImg = document.createElement('img');
-                    logoImg.src = channel.logo;
-                    logoImg.alt = channel.name + ' Logo';
+                        const logoImg = document.createElement('img');
+                        logoImg.src = channel.logo;
+                        logoImg.alt = channel.name + ' Logo';
 
-                    channelButton.appendChild(logoImg);
-                    channelList.appendChild(channelButton);
-                });
+                        channelButton.appendChild(logoImg);
+                        channelList.appendChild(channelButton);
+                    });
 
-                document.querySelectorAll('.channel-link').forEach(link => {
-                    link.addEventListener('click', event => {
-                        event.preventDefault();
-                        const newSource = link.getAttribute('data-link');
-                        loadVideo(newSource);
+                    // Display channels after loading
+                    channelLoading.style.display = 'none';
+                    channelList.style.display = 'flex';
+
+                    // Add event listeners to channel links
+                    document.querySelectorAll('.channel-link').forEach(function (link) {
+                        link.addEventListener('click', function (event) {
+                            event.preventDefault();
+                            const newSource = this.getAttribute('data-link');
+                            loadVideo(newSource);
+                        });
                     });
                 });
-            });
+        }, 2000); // Simulating a delay for demonstration
     }
 
-    // Team logo links to load respective videos
-    document.getElementById('team1Link').addEventListener('click', function(event) {
+    // Event listeners for team links
+    document.getElementById('team1Link').addEventListener('click', function (event) {
         event.preventDefault();
         const team1VideoUrl = 'https://example.com/team1-live-stream.m3u8'; // Replace with actual link
         loadVideo(team1VideoUrl);
     });
 
-    document.getElementById('team2Link').addEventListener('click', function(event) {
+    document.getElementById('team2Link').addEventListener('click', function (event) {
         event.preventDefault();
         const team2VideoUrl = 'https://example.com/team2-live-stream.m3u8'; // Replace with actual link
         loadVideo(team2VideoUrl);
     });
 </script>
 
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #181818;
+        color: #fff;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .video-player {
+        padding: 20px;
+        border-radius: 15px;
+        margin: 20px 0;
+        background-color: #1a1a1a;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        width: 100%;
+        max-width: 640px;
+        text-align: center;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .video-player video {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        border: 2px solid #ffffff;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .loading {
+        font-size: 18px;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.8);
+        padding: 10px;
+        border-radius: 10px;
+        display: block;
+        text-align: center;
+    }
+
+    .live-section {
+        margin-top: 20px;
+        width: 100%;
+        max-width: 640px;
+        text-align: center;
+        background-color: #2b2b2b;
+        padding: 15px;
+        border-radius: 10px;
+    }
+
+    .team-box {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .team {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .team-logo {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 5px;
+    }
+
+    .vs {
+        color: #4CAF50;
+        font-size: 1.5rem;
+        margin: 0 10px;
+    }
+
+    .channel-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .channel-link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 10px;
+        text-decoration: none;
+        color: white;
+    }
+
+    .channel-link img {
+        width: 50px;
+        height: 50px;
+        border: 2px solid #fff;
+        border-radius: 5px;
+    }
+
+    footer {
+        text-align: center;
+        margin-top: 20px;
+        font-family: Arial, sans-serif;
+    }
+</style>
+
 <footer>
-    <div style="text-align: center;">
-        <span style="font-family: arial;">
-            <span style="color: #ffffff;">©️2024 Kamarkhali Brodband Live TV:</span>
-            <span style="color: #ffcd00;">All Rights Reserved</span
-                                                                 
+    <div>
+        <span style="color: #ffffff;">©️2024 Kamarkhali Broadband Live TV:</span> <span style="color: #ffcd00;">All Rights Reserved</span>
+    </div>
+</footer>
+
+</body>
+</html>
