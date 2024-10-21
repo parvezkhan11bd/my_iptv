@@ -33,9 +33,9 @@
             width: 100%;
             max-width: 640px;
             text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            position: sticky; /* স্টিকি পজিশন */
+            top: 0; /* স্ক্রোল করার সময় ভিডিও প্লেয়ার থাকবে */
+            z-index: 1000; /* স্টিকি এলিমেন্টের উপরে অন্যান্য এলিমেন্ট */
         }
 
         .video-player video {
@@ -58,10 +58,10 @@
         .live-section {
             margin-top: 20px;
             width: 100%;
-            max-width: 640px;
+            max-width: 300px; /* বক্সের প্রস্থ কমানো হলো */
             text-align: center;
             background-color: #2b2b2b;
-            padding: 15px;
+            padding: 10px; /* Padding কমানো হলো */
             border-radius: 10px;
             cursor: pointer;
         }
@@ -79,8 +79,8 @@
         }
 
         .team-logo {
-            width: 60px;
-            height: 60px;
+            width: 40px; /* লোগোর আকার ছোট করা হলো */
+            height: 40px; /* লোগোর আকার ছোট করা হলো */
             margin-bottom: 5px;
         }
 
@@ -105,16 +105,16 @@
             text-decoration: none;
             color: white;
             background-color: #333;
-            width: 120px;
-            height: 120px;
+            width: 80px; /* চ্যানেল বক্সের প্রস্থ নির্ধারণ করা হলো */
+            height: 80px; /* চ্যানেল বক্সের উচ্চতা নির্ধারণ করা হলো */
             border-radius: 10px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
             transition: background-color 0.3s ease;
         }
 
         .channel-link img {
-            width: 80px;
-            height: 80px;
+            width: 50px; /* লোগোর আকার ছোট করা হলো */
+            height: 50px; /* লোগোর আকার ছোট করা হলো */
             border: 2px solid #fff;
             border-radius: 5px;
             margin-bottom: 5px;
@@ -134,42 +134,48 @@
 
 <body>
     <header>
-        <img src="https://i.ibb.co.com/WthG9Mn/IMG-20241015-WA0000.jpg" alt="Website Logo" style="width: 450px; height: auto; display: block; margin: 30px;">
+        <img src="https://i.ibb.co/com/WthG9Mn/IMG-20241015-WA0000.jpg" alt="Website Logo" style="width: 450px; height: auto; display: block; margin: 30px;">
     </header>
 
     <!-- Video Player Section -->
     <div class="video-player">
-        <div class="loading" id="videoLoading"></div>
-        <video autoplay controls crossorigin id="videoPlayer" playsinline unmuted>
-            <source id="videoSource" src="" type="application/vnd.apple.mpegurl">
+        <div class="loading" id="videoLoading">
+            Loading Video...
+        </div>
+        <video autoplay="" controls="" crossorigin="" id="videoPlayer" playsinline="" unmuted="">
+            <source id="videoSource" src="" type="application/vnd.apple.mpegurl"></source>
         </video>
     </div>
 
     <!-- Live Section -->
-    <div class="live-section" id="liveSection" onclick="loadLiveMatch()">
+    <div class="live-section" onclick="loadVideo('https://your-live-stream-url.m3u8')">
         <div class="team-box">
             <div class="team">
-                <img src="team1_logo_url" alt="Team 1 Logo" class="team-logo">
+                <img src="https://example.com/team1-logo.png" alt="Team 1 Logo" class="team-logo">
                 <span>Team 1</span>
             </div>
-            <span class="vs">Vs</span>
+            <div class="vs">Vs</div>
             <div class="team">
-                <img src="team2_logo_url" alt="Team 2 Logo" class="team-logo">
+                <img src="https://example.com/team2-logo.png" alt="Team 2 Logo" class="team-logo">
                 <span>Team 2</span>
             </div>
         </div>
     </div>
 
-    <!-- Channel Buttons -->
-    <div class="channel-buttons" id="channelList" style="display: flex;">
+    <div class="loading" id="channelLoading">
+        <p>Loading channels...</p>
+    </div>
+    <div class="channel-buttons" id="channelList" style="display: none;">
         <!-- Channels will be dynamically loaded here -->
     </div>
 
     <script>
         const video = document.getElementById('videoPlayer');
         const videoLoading = document.getElementById('videoLoading');
+        const channelLoading = document.getElementById('channelLoading');
         const channelList = document.getElementById('channelList');
 
+        // Display video loading animation
         video.addEventListener('waiting', function () {
             videoLoading.style.display = 'block';
         });
@@ -178,9 +184,12 @@
             videoLoading.style.display = 'none';
         });
 
+        // Load demo video when the page loads
         document.addEventListener('DOMContentLoaded', function () {
             const demoVideoUrl = 'https://dzkyvlfyge.erbvr.com/PeaceTvBangla/tracks-v3a1/mono.m3u8';
             loadVideo(demoVideoUrl);
+
+            // Fetch and load channels
             loadChannels();
         });
 
@@ -200,63 +209,64 @@
         }
 
         function loadChannels() {
-            fetch('https://raw.githubusercontent.com/parvezkhan11bd/parvez_ip/refs/heads/main/toffe.m3u')
-                .then(response => response.text())
-                .then(data => {
-                    const lines = data.split('\n');
-                    let channels = [];
-                    let currentChannel = {};
+            // Simulate delay for loading channels
+            setTimeout(() => {
+                fetch('https://raw.githubusercontent.com/parvezkhan11bd/parvez_ip/refs/heads/main/toffe.m3u')
+                    .then(response => response.text())
+                    .then(data => {
+                        const lines = data.split('\n');
+                        let channels = [];
+                        let currentChannel = {};
 
-                    lines.forEach(line => {
-                        if (line.startsWith('#EXTINF')) {
-                            const logoMatch = line.match(/tvg-logo="(.*?)"/);
-                            const nameMatch = line.match(/,(.*)/);
-                            if (logoMatch && nameMatch) {
-                                currentChannel.logo = logoMatch[1];
-                                currentChannel.name = nameMatch[1];
+                        lines.forEach(line => {
+                            if (line.startsWith('#EXTINF')) {
+                                const logoMatch = line.match(/tvg-logo="(.*?)"/);
+                                const nameMatch = line.match(/,(.*)/);
+                                if (logoMatch && nameMatch) {
+                                    currentChannel.logo = logoMatch[1];
+                                    currentChannel.name = nameMatch[1];
+                                }
+                            } else if (line.startsWith('http')) {
+                                currentChannel.url = line.trim();
+                                channels.push(currentChannel);
+                                currentChannel = {};
                             }
-                        } else if (line.startsWith('http')) {
-                            currentChannel.url = line.trim();
-                            channels.push(currentChannel);
-                            currentChannel = {};
-                        }
-                    });
+                        });
 
-                    channels.forEach(channel => {
-                        const channelButton = document.createElement('a');
-                        channelButton.href = "#";
-                        channelButton.classList.add('channel-link');
-                        channelButton.setAttribute('data-link', channel.url);
+                        channels.forEach(channel => {
+                            const channelButton = document.createElement('a');
+                            channelButton.href = "#";
+                            channelButton.classList.add('channel-link');
+                            channelButton.setAttribute('data-link', channel.url);
 
-                        const logoImg = document.createElement('img');
-                        logoImg.src = channel.logo;
-                        logoImg.alt = channel.name + ' Logo';
+                            const logoImg = document.createElement('img');
+                            logoImg.src = channel.logo;
+                            logoImg.alt = channel.name + ' Logo';
 
-                        channelButton.appendChild(logoImg);
-                        channelButton.appendChild(document.createTextNode(channel.name));
-                        channelList.appendChild(channelButton);
-                    });
+                            channelButton.appendChild(logoImg);
+                            channelList.appendChild(channelButton);
+                        });
 
-                    document.querySelectorAll('.channel-link').forEach(function (link) {
-                        link.addEventListener('click', function (event) {
-                            event.preventDefault();
-                            const newSource = this.getAttribute('data-link');
-                            loadVideo(newSource);
+                        // Display channels after loading
+                        channelLoading.style.display = 'none';
+                        channelList.style.display = 'flex';
+
+                        // Add click event to channel buttons
+                        const channelLinks = document.querySelectorAll('.channel-link');
+                        channelLinks.forEach(link => {
+                            link.addEventListener('click', function (e) {
+                                e.preventDefault();
+                                const videoUrl = this.getAttribute('data-link');
+                                loadVideo(videoUrl);
+                            });
                         });
                     });
-                });
-        }
-
-        function loadLiveMatch() {
-            const liveVideoUrl = 'https://zjdmi53knyt.a.trbcdn.net/dazn1/tracks-v4a1/mono.m3u8'; // এখানে লাইভ ভিডিও লিঙ্ক দিন
-            loadVideo(liveVideoUrl);
+            }, 1000);
         }
     </script>
 
     <footer>
-        <div>
-            <span style="color: #ffffff;">©️2024 Kamarkhali Broadband Live TV:</span> <span style="color: #ffcd00;">All Rights Reserved</span>
-        </div>
+        <p>&copy; 2024 KamarKhali Broadband. All Rights Reserved.</p>
     </footer>
 </body>
 
