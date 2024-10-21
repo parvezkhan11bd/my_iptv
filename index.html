@@ -58,7 +58,7 @@
         .live-section {
             margin-top: 20px;
             width: 100%;
-            max-width: 350px; /* বক্সের প্রস্থ কমানো হলো */
+            max-width: 400px; /* বক্সের প্রস্থ কমানো হলো */
             text-align: center;
             background-color: #2b2b2b;
             padding: 10px; /* Padding কমানো হলো */
@@ -134,7 +134,7 @@
 
 <body>
     <header>
-        <img src="https://i.ibb.co.com/WthG9Mn/IMG-20241015-WA0000.jpg" alt="Website Logo" style="width: 450px; height: auto; display: block; margin: 30px;">
+        <img src="https://i.ibb.co/com/WthG9Mn/IMG-20241015-WA0000.jpg" alt="Website Logo" style="width: 450px; height: auto; display: block; margin: 30px;">
     </header>
 
     <!-- Video Player Section -->
@@ -257,7 +257,7 @@
                             link.addEventListener('click', function (e) {
                                 e.preventDefault();
                                 const videoUrl = this.getAttribute('data-link');
-                                loadVideo(videoUrl);
+                                loadVideo(videoUrl); // Load new video in the same player
                             });
                         });
                     });
