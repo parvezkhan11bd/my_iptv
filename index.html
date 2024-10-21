@@ -91,7 +91,14 @@
             font-size: 1.5rem;
             margin: 0 10px;
         }
-
+        
+       .title-image {
+            width: 100px; /* ইমেজের প্রস্থ */
+            height: auto; /* উচ্চতা স্বয়ংক্রিয় */
+            display: block; /* ব্লক এলিমেন্ট হিসেবে দেখানোর জন্য */
+            margin: 0 auto; /* কেন্দ্রে রাখার জন্য */
+        }
+        
         .channel-buttons {
             display: flex;
             flex-wrap: wrap;
@@ -157,7 +164,12 @@
      </marquee>
 </center>
 </div> 
-<h2>Live Matches</h2>
+<div>
+    <h1>Your Content Title</h1>
+    <img src="your-image-url.jpg" alt="Title Image" style="width: 100px; height: auto;">
+   
+</div>
+
 </div>
     <div class="live-section" onclick="loadVideo('https://raw.githubusercontent.com/parvezkhan11bd/my_iptv/refs/heads/main/video/playlist.m3u8')">
         <div class="team-box">
