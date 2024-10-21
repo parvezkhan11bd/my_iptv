@@ -232,7 +232,6 @@
                             channelButton.href = "#";
                             channelButton.classList.add('channel-link');
                             channelButton.setAttribute('data-link', channel.url);
-                            channelButton.setAttribute('target', '_blank'); // New tab will open
 
                             const logoImg = document.createElement('img');
                             logoImg.src = channel.logo;
@@ -250,7 +249,13 @@
                             link.addEventListener('click', function (e) {
                                 e.preventDefault();
                                 let videoUrl = this.getAttribute('data-link');
-                                window.open(videoUrl, '_blank'); // Open link in a new tab
+
+                                // Check if the URL is HTTP or HTTPS
+                                if (videoUrl.startsWith('http://')) {
+                                    window.open(videoUrl, '_blank'); // Open HTTP links in a new tab
+                                } else if (videoUrl.startsWith('https://')) {
+                                    loadVideo(videoUrl); // Load HTTPS links in the player
+                                }
                             });
                         });
                     });
