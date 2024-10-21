@@ -11,6 +11,7 @@
     <link href="https://i.ibb.co/com/PQgtMq7/img-1-1728903047238.webp" rel="shortcut icon" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/plyr@3.6.2/dist/plyr.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/hls.js@1.1.4/dist/hls.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dashjs@3.2.0/dist/dash.all.min.js"></script>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -142,9 +143,7 @@
         <div class="loading" id="videoLoading">
             Loading Video...
         </div>
-        <video autoplay="" controls="" crossorigin="" id="videoPlayer" playsinline="" unmuted="">
-            <source id="videoSource" src="" type="application/vnd.apple.mpegurl"></source>
-        </video>
+        <video id="videoPlayer" controls playsinline></video>
     </div>
 
     <!-- Live Section -->
@@ -194,7 +193,11 @@
         });
 
         function loadVideo(sourceUrl) {
-            if (Hls.isSupported()) {
+            if (sourceUrl.endsWith('.mpd')) {
+                // Use dash.js for MPD format
+                const player = dashjs.MediaPlayer().create();
+                player.initialize(video, sourceUrl, true);
+            } else if (Hls.isSupported()) {
                 if (window.hls) {
                     window.hls.destroy();
                 }
