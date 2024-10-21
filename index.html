@@ -107,7 +107,7 @@
 
 <body>
     <header>
-        <img src="https://i.ibb.co.com/WthG9Mn/IMG-20241015-WA0000.jpg" alt="Website Logo" style="width: 450px; height: auto; display: block; margin: 30px;">
+        <img src="https://i.ibb.co/com/WthG9Mn/IMG-20241015-WA0000.jpg" alt="Website Logo" style="width: 450px; height: auto; display: block; margin: 30px;">
     </header>
 
     <div class="video-player">
@@ -245,14 +245,36 @@
                         });
 
                         channels.forEach(channel => {
-                            const button = document.createElement('button');
-                            button.innerText = channel.name;
-                            button.onclick = () => loadVideo(channel.url);
-                            channelList.appendChild(button);
+                            const channelButton = document.createElement('a');
+                            channelButton.href = "#";
+                            channelButton.classList.add('channel-link');
+                            channelButton.setAttribute('data-link', channel.url);
+
+                            const logoImg = document.createElement('img');
+                            logoImg.src = channel.logo;
+                            logoImg.alt = channel.name + ' Logo';
+
+                            channelButton.appendChild(logoImg);
+                            channelList.appendChild(channelButton);
                         });
 
-                        channelList.style.display = 'block';
                         channelLoading.style.display = 'none';
+                        channelList.style.display = 'flex';
+
+                        const channelLinks = document.querySelectorAll('.channel-link');
+                        channelLinks.forEach(link => {
+                            link.addEventListener('click', function (e) {
+                                e.preventDefault();
+                                let videoUrl = this.getAttribute('data-link');
+
+                                // Check if the URL is HTTP or HTTPS
+                                if (videoUrl.startsWith('http://')) {
+                                    window.open(videoUrl, '_blank'); // Open HTTP links in a new tab
+                                } else if (videoUrl.startsWith('https://')) {
+                                    loadVideo(videoUrl); // Load HTTPS links in the player
+                                }
+                            });
+                        });
                     });
             }, 1000);
         }
