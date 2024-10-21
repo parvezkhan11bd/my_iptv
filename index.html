@@ -11,7 +11,6 @@
     <link href="https://i.ibb.co/com/PQgtMq7/img-1-1728903047238.webp" rel="shortcut icon" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/plyr@3.6.2/dist/plyr.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/hls.js@1.1.4/dist/hls.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/dashjs@3.2.0/dist/dash.all.min.js"></script>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -34,9 +33,9 @@
             width: 100%;
             max-width: 640px;
             text-align: center;
-            position: sticky; /* স্টিকি পজিশন */
-            top: 0; /* স্ক্রোল করার সময় ভিডিও প্লেয়ার থাকবে */
-            z-index: 1000; /* স্টিকি এলিমেন্টের উপরে অন্যান্য এলিমেন্ট */
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .video-player video {
@@ -59,10 +58,10 @@
         .live-section {
             margin-top: 20px;
             width: 100%;
-            max-width: 450px; /* বক্সের প্রস্থ কমানো হলো */
+            max-width: 350px;
             text-align: center;
             background-color: #2b2b2b;
-            padding: 10px; /* Padding কমানো হলো */
+            padding: 10px;
             border-radius: 10px;
             cursor: pointer;
         }
@@ -80,8 +79,8 @@
         }
 
         .team-logo {
-            width: 40px; /* লোগোর আকার ছোট করা হলো */
-            height: 40px; /* লোগোর আকার ছোট করা হলো */
+            width: 40px;
+            height: 40px;
             margin-bottom: 5px;
         }
 
@@ -106,16 +105,16 @@
             text-decoration: none;
             color: white;
             background-color: #333;
-            width: 80px; /* চ্যানেল বক্সের প্রস্থ নির্ধারণ করা হলো */
-            height: 80px; /* চ্যানেল বক্সের উচ্চতা নির্ধারণ করা হলো */
+            width: 80px;
+            height: 80px;
             border-radius: 10px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
             transition: background-color 0.3s ease;
         }
 
         .channel-link img {
-            width: 50px; /* লোগোর আকার ছোট করা হলো */
-            height: 50px; /* লোগোর আকার ছোট করা হলো */
+            width: 50px;
+            height: 50px;
             border: 2px solid #fff;
             border-radius: 5px;
             margin-bottom: 5px;
@@ -138,24 +137,24 @@
         <img src="https://i.ibb.co.com/WthG9Mn/IMG-20241015-WA0000.jpg" alt="Website Logo" style="width: 450px; height: auto; display: block; margin: 30px;">
     </header>
 
-    <!-- Video Player Section -->
     <div class="video-player">
         <div class="loading" id="videoLoading">
             Loading Video...
         </div>
-        <video id="videoPlayer" controls playsinline></video>
+        <video autoplay="" controls="" crossorigin="" id="videoPlayer" playsinline="" unmuted="">
+            <source id="videoSource" src="" type="application/vnd.apple.mpegurl"></source>
+        </video>
     </div>
 
-    <!-- Live Section -->
-    <div class="live-section" onclick="loadVideo('https://ssc-1-enc.edgenextcdn.net/out/v1/c696e4819b55414388a1a487e8a45ca1/index.mpd?|drmScheme=clearkey&drmLicense=d84c325f36814f39bbe59080272b10c3:550727de4c96ef1ecff874905493580f')">
+    <div class="live-section" onclick="loadVideo('http://bd.ottbd.online:2082/live/Durjoy859/01327184859/2181.m3u8')">
         <div class="team-box">
             <div class="team">
-                <img src="https://i.ibb.co.com/rMBV1xX/images.jpg" alt="Team 1 Logo" class="team-logo">
+                <img src="https://example.com/team1-logo.png" alt="Team 1 Logo" class="team-logo">
                 <span>Team 1</span>
             </div>
             <div class="vs">Vs</div>
             <div class="team">
-                <img src="https://i.ibb.co.com/rMBV1xX/images.jpg" alt="Team 2 Logo" class="team-logo">
+                <img src="https://example.com/team2-logo.png" alt="Team 2 Logo" class="team-logo">
                 <span>Team 2</span>
             </div>
         </div>
@@ -174,7 +173,6 @@
         const channelLoading = document.getElementById('channelLoading');
         const channelList = document.getElementById('channelList');
 
-        // Display video loading animation
         video.addEventListener('waiting', function () {
             videoLoading.style.display = 'block';
         });
@@ -183,21 +181,20 @@
             videoLoading.style.display = 'none';
         });
 
-        // Load demo video when the page loads
         document.addEventListener('DOMContentLoaded', function () {
             const demoVideoUrl = 'https://dzkyvlfyge.erbvr.com/PeaceTvBangla/tracks-v3a1/mono.m3u8';
             loadVideo(demoVideoUrl);
 
-            // Fetch and load channels
             loadChannels();
         });
 
         function loadVideo(sourceUrl) {
-            if (sourceUrl.endsWith('.mpd')) {
-                // Use dash.js for MPD format
-                const player = dashjs.MediaPlayer().create();
-                player.initialize(video, sourceUrl, true);
-            } else if (Hls.isSupported()) {
+            // If the URL is HTTP, convert it to HTTPS
+            if (sourceUrl.startsWith('http://')) {
+                sourceUrl = sourceUrl.replace('http://', 'https://');
+            }
+
+            if (Hls.isSupported()) {
                 if (window.hls) {
                     window.hls.destroy();
                 }
@@ -212,7 +209,6 @@
         }
 
         function loadChannels() {
-            // Simulate delay for loading channels
             setTimeout(() => {
                 fetch('https://raw.githubusercontent.com/parvezkhan11bd/parvez_ip/refs/heads/main/toffe.m3u')
                     .then(response => response.text())
@@ -250,17 +246,19 @@
                             channelList.appendChild(channelButton);
                         });
 
-                        // Display channels after loading
                         channelLoading.style.display = 'none';
                         channelList.style.display = 'flex';
 
-                        // Add click event to channel buttons
                         const channelLinks = document.querySelectorAll('.channel-link');
                         channelLinks.forEach(link => {
                             link.addEventListener('click', function (e) {
                                 e.preventDefault();
-                                const videoUrl = this.getAttribute('data-link');
-                                loadVideo(videoUrl); // Load new video in the same player
+                                let videoUrl = this.getAttribute('data-link');
+                                // If the URL is HTTP, convert it to HTTPS
+                                if (videoUrl.startsWith('http://')) {
+                                    videoUrl = videoUrl.replace('http://', 'https://');
+                                }
+                                loadVideo(videoUrl);
                             });
                         });
                     });
